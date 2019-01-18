@@ -1,5 +1,5 @@
 # QG_DNS
-A spectral code for two-equal-layer QG in a periodic domain
+A spectral code for both two-equal-layer QG and two-surface QG in a periodic domain
 
 The matlab script Driver.m runs the simulation. 
 
