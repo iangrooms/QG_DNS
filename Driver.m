@@ -4,7 +4,7 @@
 
 Initialize
 % The following are wavenumbers, used to compute u and v for visualization
-k = (1/16)*[0:N/2 -N/2+1:-1];[KX,KY]=meshgrid(k,k);
+k = (2*pi/params.LX)*[0:N/2 -N/2+1:-1];[KX,KY]=meshgrid(k,k);
 
 for ii=1:Nt
     % Stop simulation if q gets too big.

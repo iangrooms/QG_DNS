@@ -1,21 +1,24 @@
+% 2-layer or 2-surface
+model = 2; % 1 = layer, 2 = surface
+
 % Set simulation parameters
 N = 256; % Number of points in each direction
 countDiag = 5; % Compute diagnostics every countDiag steps
-isAdaptive = false; % Is the time step adaptive
+isAdaptive = true; % Is the time step adaptive
 dt = .01; % time step size; if adaptive then it will change
 Nt = 1E3; % Number of time steps
 qlim = 1E3; % if any q > qlim, simulation stops
 
 % Set physical parameters
-kd = 1; % Nondimensional deformation wavenumber
-LX = 2*pi*16; % Nondimensional domain width
-kb = 0; % Nondimensional beta wavenumber
-r = 0; % Nondimensional Ekman friction coefficient
+kd = 1; % Nondimensional deformation wavenumber. 2-surface assumes kd=1.
+LX = 2*pi; % Nondimensional domain width
+kb = 0; % Nondimensional beta wavenumber; assumed to be 0 for 2-surface
+r = 0.1; % Nondimensional Ekman friction coefficient
 c_d = 0.1; % Nondimensional quadratic drag coefficient
-nu = 5E-7; % Coefficient of hyperviscous vorticity diffusion
+nu = 1E-11; % Coefficient of hyperviscous PV/buoyancy diffusion
 
 % Put useful stuff into a struct
-params = struct('kd',kd,'kb',kb,'r',r,'cd',c_d,'nu',nu,'N',N,'LX',LX);
+params = struct('kd',kd,'kb',kb,'r',r,'cd',c_d,'nu',nu,'N',N,'LX',LX,'model',model);
 
 % Set up hyperviscous PV dissipation
 k = (2*pi/LX)*[0:N/2 -N/2+1:-1]'; % wavenumbers
@@ -38,6 +41,7 @@ t = 0;
 qp = randn([N N 2]); 
 % q is the Fourier coefficients of potential vorticity
 q = fft2(qp);
+% If model = 2 then qp is surface buoyancy on the grid
 
 % Initialize diagnostics
 T = zeros(1,floor(Nt/countDiag));
