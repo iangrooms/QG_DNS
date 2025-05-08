@@ -12,3 +12,5 @@ Versions of this code were used, for example, in the following two papers
 I Grooms and AJ Majda, "Stochastic superparameterization in quasigeostrophic turbulence" J Comput Phys, 2014
 
 I Grooms and L Zanna, "A note on 'Toward a stochastic parameterization of mesoscale eddies'" Ocean Modelling, 2017
+
+A Chen et al., "Comparing Eddy‐Permitting Ocean Model Parameterizations via Lagrangian Particle Statistics in a Quasigeostrophic Setting" JGR Oceans, 2018
